@@ -2,9 +2,12 @@ from bs4 import BeautifulSoup
 import requests
 import csv
 import os
+print("Current directory is : ")
 print(os.getcwd())
 url ="https://cdn.rawgit.com/younginnovations/internship-challenges/master/data-analysis/scrape-it/exampledata.html"
+
 page = requests.get(url)
+print("Page status")
 print(page.status_code)
 better = BeautifulSoup(page.content,'html.parser')
 
@@ -21,6 +24,6 @@ for row in table.findAll('tr'):
 if (os.path.isdir('./out')==False):
     os.mkdir ("/out")
 os.chdir ("out")
-outputfile = open('./test.csv','w',newline='', encoding='utf8')
+outputfile = open('./data.csv','w+',newline='', encoding='utf8')
 writer = csv.writer(outputfile)
 writer.writerows(rows)
